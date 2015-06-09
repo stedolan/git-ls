@@ -12,6 +12,9 @@ from collections import defaultdict
 def run(cmd):
     return subprocess.check_output(cmd.split()).decode(sys.stdout.encoding)
 
+if 'GIT_PREFIX' in os.environ and os.environ['GIT_PREFIX']:
+    os.chdir(os.environ['GIT_PREFIX'])
+
 try:
     gprefix = run("git rev-parse --show-prefix")[:-1]
 except:
