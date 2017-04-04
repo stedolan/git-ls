@@ -55,9 +55,10 @@ def git_status():
             if s[0] in 'MADRC':
                 stats.add('index')
             if s[1] in 'MADRC':
-                stats.add('local')    
-        gfiles[name].update(stats)
-        gfiles[os.path.dirname(name)].update(stats)
+                stats.add('local')
+        while name not in [".", ""]:
+            gfiles[name].update(stats)
+            name = os.path.dirname(name)
     return gfiles
     
 def list_files(gfiles):
